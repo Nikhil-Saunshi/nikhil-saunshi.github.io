@@ -104,7 +104,7 @@
               Apple Inc. &nbsp;|&nbsp; AI Infrastructure &nbsp;|&nbsp; Python Expert &nbsp;|&nbsp; RDMA / InfiniBand
             </p>
             <p style="text-align:justify;">
-              I'm Nikhil — a Systems &amp; Infrastructure Validation Engineer with <strong>8+ years of experience</strong>
+              I'm Nikhil — a Systems &amp; Infrastructure Validation Engineer with <strong><span id="yoe-inline"></span> years of experience</strong>
               at Meta and Apple building scalable, Python-based automation frameworks for AI datacenter and embedded platforms.
               I specialize in network performance benchmarking (RDMA/InfiniBand), system-level debugging across GPU, NIC,
               firmware, and Linux layers, and LLM-powered test orchestration for AI workload validation.
@@ -120,7 +120,7 @@
                 <ul>
                   <li><i class="bi bi-chevron-right"></i> <strong>Location:</strong> <span>San Francisco Bay Area, CA</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>M.S. Computer Engineering, SJSU</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Experience:</strong> <span>8+ Years</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Experience:</strong> <span><span id="yoe-info"></span> Years</span></li>
                 </ul>
               </div>
               <div class="col-lg-6">
@@ -135,7 +135,7 @@
             <div class="row mt-3" style="text-align:center;">
               <div class="col-4">
                 <div style="background:#f8f9fa; border-radius:8px; padding:14px 8px;">
-                  <h4 style="color:#149ddd; font-size:1.8rem; margin-bottom:4px;">8+</h4>
+                  <h4 style="color:#149ddd; font-size:1.8rem; margin-bottom:4px;"><span id="yoe-stat"></span></h4>
                   <span style="font-size:0.82rem; color:#555;">Years Experience</span>
                 </div>
               </div>
@@ -375,6 +375,17 @@
                 <div class="vtl-meta">Tower Foundation – San José State University &nbsp;·&nbsp; San José, CA</div>
                 <ul class="vtl-bullets">
                   <li>Built end-to-end ML pipeline achieving <strong>91% F1-score</strong> in multi-class text classification using NLP/NLTK.</li>
+                </ul>
+              </div>
+
+              <div class="vtl-item">
+                <div class="vtl-header">
+                  <span class="vtl-title">Programmer Analyst</span>
+                  <span class="vtl-badge">May 2016 – Jun 2017</span>
+                </div>
+                <div class="vtl-meta">Cognizant Technology Solutions &nbsp;·&nbsp; India &nbsp;·&nbsp; <em>Client: CVS Health</em></div>
+                <ul class="vtl-bullets">
+                  <li>Queried, analyzed, and reviewed payment accuracy in batch processing of claims data using the RxClaim system.</li>
                 </ul>
               </div>
 
@@ -704,35 +715,52 @@
 
         <div class="row justify-content-center" data-aos="fade-in">
           <div class="col-lg-8">
-            <form action="https://formsubmit.co/nikhilts19@gmail.com" method="POST" role="form" class="php-email-form" style="width:100%;">
+            <style>
+              .modern-form .field-wrap { position: relative; margin-bottom: 22px; }
+              .modern-form label { display: block; font-size: 12px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: #888; margin-bottom: 6px; font-family: 'Raleway', sans-serif; }
+              .modern-form input, .modern-form textarea {
+                width: 100%; padding: 12px 16px; border: 1.5px solid #e0e0e0; border-radius: 8px;
+                font-size: 14px; font-family: 'Raleway', sans-serif; color: #333;
+                background: #fafafa; outline: none;
+                transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+              }
+              .modern-form input:focus, .modern-form textarea:focus {
+                border-color: #149ddd; background: #fff;
+                box-shadow: 0 0 0 3px rgba(20,157,221,0.12);
+              }
+              .modern-form textarea { resize: vertical; min-height: 140px; }
+              .modern-form .row-fields { display: flex; gap: 16px; }
+              .modern-form .row-fields .field-wrap { flex: 1; }
+              @media (max-width: 576px) { .modern-form .row-fields { flex-direction: column; gap: 0; } }
+            </style>
+            <form action="https://formsubmit.co/nikhilts19@gmail.com" method="POST" role="form" class="modern-form" style="width:100%;">
               <!-- FormSubmit config: disable captcha, redirect back to portfolio -->
               <input type="hidden" name="_captcha" value="false">
               <input type="hidden" name="_next" value="https://nikhil-saunshi.github.io">
               <input type="hidden" name="_subject" value="New message from your portfolio">
-              <div class="row">
-                <div class="form-group col-md-6">
+              <div class="row-fields">
+                <div class="field-wrap">
                   <label for="name">Your Name</label>
-                  <input type="text" name="name" class="form-control" id="name" placeholder="John Doe" required>
+                  <input type="text" name="name" id="name" placeholder="John Doe" required>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="field-wrap">
                   <label for="email">Your Email</label>
-                  <input type="email" class="form-control" name="email" id="email" placeholder="john@example.com" required>
+                  <input type="email" name="email" id="email" placeholder="john@example.com" required>
                 </div>
               </div>
-              <div class="form-group">
+              <div class="field-wrap">
                 <label for="subject">Subject</label>
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Let's connect!" required>
+                <input type="text" name="subject" id="subject" placeholder="Let's connect!" required>
               </div>
-              <div class="form-group">
+              <div class="field-wrap">
                 <label for="message">Message</label>
-                <textarea class="form-control" name="message" id="message" rows="7" placeholder="Your message here..." required></textarea>
+                <textarea name="message" id="message" placeholder="Your message here..." required></textarea>
               </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
+              <div class="text-center">
+                <button type="submit" style="background:#149ddd; color:#fff; border:none; padding:12px 40px; border-radius:6px; font-family:'Raleway',sans-serif; font-size:15px; font-weight:600; letter-spacing:0.5px; cursor:pointer; transition:background 0.3s ease, transform 0.2s ease; box-shadow:0 4px 14px rgba(20,157,221,0.35);" onmouseover="this.style.background='#1287b8';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#149ddd';this.style.transform='translateY(0)'">
+                  <i class="bi bi-send me-2"></i>Send Message
+                </button>
               </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
           </div>
         </div>
@@ -746,17 +774,10 @@
   <footer id="footer">
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong><span>Nikhil T. Saunshi</span></strong>
-      </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        &copy; <script>document.write(new Date().getFullYear())</script> Nikhil T. Saunshi
       </div>
     </div>
-  </footer><!-- End  Footer -->
+  </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
@@ -775,6 +796,20 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
+  <script>
+    (function() {
+      var start = new Date(2016, 4, 1); // May 2016 (first professional role)
+      var gapMonths = 14;               // non-employment gap during full-time Masters (pre-RA period)
+      var now = new Date();
+      var totalMonths = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
+      var yoe = Math.floor((totalMonths - gapMonths) / 12);
+      var label = yoe + '+';
+      ['yoe-inline','yoe-info','yoe-stat'].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) el.textContent = label;
+      });
+    })();
+  </script>
 </body>
 
 </html>
