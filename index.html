@@ -1,814 +1,934 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nikhil Saunshi · Automation &amp; Systems Validation</title>
+  <meta name="description" content="Nikhil Saunshi, automation engineer. Battery SQA at Apple, AI infrastructure validation at Meta. Fleet-scale test frameworks, LLM-powered orchestration, data-driven decisions.">
+  <meta name="keywords" content="Nikhil Saunshi, Systems Engineer, AI Infrastructure, Test Automation, Python, RDMA, Validation, Apple, Meta">
+  <meta property="og:title" content="Nikhil Saunshi · Automation &amp; Systems Validation">
+  <meta property="og:description" content="Automation engineer building evidence-gated validation systems for AI hardware and battery platforms.">
 
-  <title>Nikhil T. Saunshi | Portfolio</title>
-  <meta content="Nikhil T. Saunshi – Sr. Systems Engineer at Apple specializing in Battery SQA, Python automation, and AI infrastructure validation." name="description">
-  <meta content="Nikhil Saunshi, Software Engineer, Systems Engineer, AI Infrastructure, Test Automation, Python, Apple, Meta" name="keywords">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="alternate icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#050607">
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <!-- Google Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-    rel="stylesheet">
+<style>
+  :root{
+    --bg:#050607; --surface:#0B0E10; --surface-2:#10141688;
+    --ink:#EDF1EF; --dim:#98A29E; --faint:#5C6663;
+    --line:rgba(255,255,255,.07); --line-2:rgba(255,255,255,.12);
+    --accent:#64E8D2; --accent-deep:#0FA88F; --accent-wash:rgba(100,232,210,.08);
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    --sans:"Instrument Sans",system-ui,-apple-system,sans-serif;
+    --disp:"Syne",var(--sans);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+  body{background:var(--bg);color:var(--ink);font:16px/1.65 var(--sans);
+    -webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:var(--accent);color:#04110E}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{color:#9FF2E4}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+  .mono{font-family:var(--mono)}
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  /* ── Nav ─────────────────────────────────────── */
+  nav{position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(5,6,7,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line)}
+  .nav-in{max-width:1100px;margin:0 auto;padding:0 24px;height:58px;
+    display:flex;align-items:center;justify-content:space-between}
+  .brand{font-family:var(--disp);font-weight:800;font-size:15px;letter-spacing:.04em;color:var(--ink)}
+  .brand b{color:var(--accent)}
+  .nav-links{display:flex;gap:26px;list-style:none}
+  .nav-links a{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--dim)}
+  .nav-links a:hover{color:var(--ink)}
+  .menu-btn{display:none;background:none;border:1px solid var(--line-2);border-radius:4px;
+    color:var(--ink);font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+    padding:7px 14px;cursor:pointer}
+  @media(max-width:760px){
+    .menu-btn{display:block}
+    .nav-links{display:none;position:fixed;top:58px;left:0;right:0;
+      background:rgba(5,6,7,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+      flex-direction:column;gap:0;padding:6px 24px 16px;border-bottom:1px solid var(--line)}
+    .nav-links.open{display:flex}
+    .nav-links a{display:block;padding:13px 0;font-size:12.5px;border-bottom:1px solid var(--line)}
+    .nav-links li:last-child a{border-bottom:none}
+    section{padding:78px 0}
+  }
 
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  /* ── Hero ────────────────────────────────────── */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden}
+  #lattice{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(ellipse 90% 70% at 50% 42%,transparent 55%,var(--bg) 100%)}
+  .hero-in{position:relative;z-index:2;width:100%;padding:120px 0 90px}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:22px}
+  .eyebrow::before{content:"//";margin-right:10px;color:var(--faint)}
+  h1{font-family:var(--disp);font-weight:800;
+    font-size:clamp(44px,8.4vw,96px);line-height:.98;letter-spacing:-.015em;
+    text-wrap:balance;margin-bottom:26px}
+  h1 .thin{display:block;font-weight:600;color:var(--dim);
+    font-size:clamp(20px,3vw,34px);letter-spacing:.01em;margin-bottom:10px}
+  .role-line{font-family:var(--mono);font-size:clamp(13px,1.9vw,17px);color:var(--dim);
+    min-height:1.7em;margin-bottom:40px}
+  .role-line .cur{display:inline-block;width:.6em;height:1.05em;background:var(--accent);
+    vertical-align:-2px;margin-left:3px;animation:blink 1.05s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  @media (prefers-reduced-motion: reduce){.role-line .cur{animation:none}}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);
+    font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;
+    padding:13px 26px;border-radius:4px;border:1px solid var(--line-2);
+    color:var(--ink);transition:border-color .2s,background .2s,transform .2s}
+  .btn:hover{border-color:var(--accent);color:var(--ink);transform:translateY(-2px)}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:#04110E;font-weight:500}
+  .btn.primary:hover{background:#8FF0E0;color:#04110E}
+  .scroll-hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:2;
+    font-family:var(--mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--faint);writing-mode:vertical-rl;display:flex;align-items:center;gap:8px}
+  .scroll-hint::after{content:"";width:1px;height:44px;background:linear-gradient(var(--accent),transparent)}
+  .topo{position:absolute;right:28px;bottom:26px;z-index:2;font-family:var(--mono);
+    font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint)}
+  .topo::before{content:"▮ ";color:var(--accent)}
+  @media(max-width:760px){.topo{display:none}}
+  .sec-sub{margin:-34px 0 44px;color:var(--dim);font-size:15px}
 
-  <!-- =======================================================
-  * Template Name: iPortfolio
-  * Updated: Mar 10 2023 with Bootstrap v5.2.3
-  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  /* ── Sections ────────────────────────────────── */
+  section{padding:110px 0}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:48px}
+  .sec-num{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.15em}
+  h2{font-family:var(--disp);font-weight:700;font-size:clamp(26px,4vw,40px);letter-spacing:-.01em}
+  .sec-head::after{content:"";flex:1;height:1px;background:var(--line);align-self:center}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.on{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+  /* ── About ───────────────────────────────────── */
+  .about-grid{display:grid;grid-template-columns:1fr;gap:52px;align-items:start;max-width:860px}
+  .about-copy p{color:var(--dim);margin-bottom:16px;max-width:none}
+  @media(min-width:761px){
+    .about-copy p,.proj p,.award p,.xp ul li,.lede,.sec-sub{
+      text-align:justify;hyphens:auto}
+  }
+  .about-copy p b,.about-copy p strong{color:var(--ink);font-weight:600}
+  .facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px;
+    margin:26px 0;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+  @media(max-width:580px){.facts{grid-template-columns:1fr}}
+  .fact{background:var(--surface);padding:13px 16px;font-size:13.5px;color:var(--dim)}
+  .fact .k{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--faint);display:block;margin-bottom:3px}
+  .fact a{color:var(--ink)} .fact a:hover{color:var(--accent)}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:30px}
+  .stat{border:1px solid var(--line);border-radius:6px;padding:18px 18px 14px;background:var(--surface);
+    transition:border-color .25s}
+  .stat:hover{border-color:var(--accent-deep)}
+  .stat .v{font-family:var(--disp);font-weight:800;font-size:30px;color:var(--accent);line-height:1}
+  .stat .l{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--faint);margin-top:8px;display:block}
+
+  /* ── Experience ──────────────────────────────── */
+  .xp{border-left:1px solid var(--line-2);margin-left:6px}
+  .xp-item{position:relative;padding:0 0 44px 34px}
+  .xp-item:last-child{padding-bottom:6px}
+  .xp-item::before{content:"";position:absolute;left:-5px;top:7px;width:9px;height:9px;
+    border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+  .xp-item.edu::before{border-color:var(--dim)}
+  .xp-date{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--accent);
+    text-transform:uppercase}
+  .xp-item.edu .xp-date{color:var(--dim)}
+  .xp-title{font-family:var(--disp);font-weight:700;font-size:19px;margin:6px 0 2px}
+  .xp-org{font-size:13.5px;color:var(--dim);margin-bottom:10px}
+  .xp ul{list-style:none}
+  .xp ul li{position:relative;padding-left:18px;color:var(--dim);font-size:14.5px;margin-bottom:7px}
+  .xp ul li::before{content:"▸";position:absolute;left:0;color:var(--accent-deep);font-size:11px;top:4px}
+  .xp ul li b{color:var(--ink);font-weight:600}
+  .xp-note{font-family:var(--mono);font-size:11px;color:var(--faint);margin-top:26px}
+  .xp-cols{display:grid;grid-template-columns:1.35fr 1fr;gap:60px}
+  @media(max-width:860px){.xp-cols{grid-template-columns:1fr}}
+  .xp-colhead{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--faint);margin-bottom:24px}
+
+  /* ── Projects ────────────────────────────────── */
+  .proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+  .proj{position:relative;border:1px solid var(--line);border-radius:6px;background:var(--surface);
+    padding:24px 24px 20px;display:flex;flex-direction:column;gap:12px;
+    transition:border-color .25s,transform .25s}
+  .proj:hover{border-color:var(--accent-deep);transform:translateY(-4px)}
+  .proj.flag{background:linear-gradient(170deg,var(--surface) 55%,rgba(100,232,210,.05));
+    border-color:rgba(100,232,210,.25)}
+  .proj-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+  .proj-top .badge{margin-top:4px}
+  .proj h3{font-family:var(--disp);font-weight:700;font-size:18px;letter-spacing:-.01em}
+  .badge{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+    padding:4px 9px;border-radius:999px;white-space:nowrap;
+    border:1px solid rgba(100,232,210,.4);color:var(--accent)}
+  .badge.ghost{border-color:var(--line-2);color:var(--dim)}
+  .proj p{font-size:13.8px;color:var(--dim);flex:1}
+  .tags{display:flex;flex-wrap:wrap;gap:6px}
+  .tag{font-family:var(--mono);font-size:10.5px;color:var(--dim);
+    border:1px solid var(--line);border-radius:3px;padding:3px 8px}
+  .proj .link{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase}
+  .proj .link::after{content:" ↗"}
+
+  /* ── Skills ──────────────────────────────────── */
+  .skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+  .skill{border:1px solid var(--line);border-radius:6px;background:var(--surface);padding:22px 24px}
+  .skill h3{font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:14px}
+  .skill .tags .tag{color:var(--ink);border-color:var(--line-2)}
+
+  /* ── Awards ──────────────────────────────────── */
+  .award-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+  .award{border:1px solid var(--line);border-left:2px solid var(--accent);border-radius:6px;
+    background:var(--surface);padding:22px 24px}
+  .award .yr{font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.14em}
+  .award h3{font-family:var(--disp);font-weight:700;font-size:17px;margin:6px 0 8px}
+  .award p{font-size:13.5px;color:var(--dim)}
+  .award a{font-family:var(--mono);font-size:11.5px}
+
+  /* ── Contact ─────────────────────────────────── */
+  .contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:52px;align-items:start}
+  @media(max-width:860px){.contact-grid{grid-template-columns:1fr}}
+  .quick{display:flex;flex-direction:column;gap:12px}
+  .quick a{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:6px;
+    background:var(--surface);padding:16px 20px;color:var(--ink);transition:border-color .2s,transform .2s}
+  .quick a:hover{border-color:var(--accent-deep);transform:translateX(4px)}
+  .quick .ico{font-family:var(--mono);color:var(--accent);font-size:13px;width:52px}
+  .quick .sub{display:block;font-size:12px;color:var(--faint);font-family:var(--mono)}
+  form .fw{margin-bottom:18px}
+  form label{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--faint);margin-bottom:7px}
+  form input,form textarea{width:100%;background:var(--surface);border:1px solid var(--line-2);
+    border-radius:4px;padding:13px 15px;color:var(--ink);font:14px var(--sans);outline:none;
+    transition:border-color .2s,box-shadow .2s}
+  form input:focus,form textarea:focus{border-color:var(--accent);
+    box-shadow:0 0 0 3px var(--accent-wash)}
+  form textarea{min-height:150px;resize:vertical}
+  .frow{display:flex;gap:16px}
+  .frow .fw{flex:1}
+  @media(max-width:580px){.frow{flex-direction:column;gap:0}}
+
+  /* ── FX: glow cursor · grid floor · tilt ─────── */
+  #glow{position:fixed;top:0;left:0;z-index:1;width:560px;height:560px;border-radius:50%;
+    pointer-events:none;mix-blend-mode:screen;opacity:0;transition:opacity .4s;
+    background:radial-gradient(circle,rgba(100,232,210,.075),transparent 62%);
+    transform:translate(-50%,-50%)}
+  .gridfloor{position:absolute;left:-25%;right:-25%;bottom:-2px;height:36vh;z-index:1;
+    pointer-events:none;transform:perspective(620px) rotateX(63deg);transform-origin:bottom;
+    background:
+      repeating-linear-gradient(90deg,rgba(100,232,210,.13) 0 1px,transparent 1px 68px),
+      repeating-linear-gradient(0deg,rgba(100,232,210,.11) 0 1px,transparent 1px 56px);
+    background-position:0 0,0 0;
+    -webkit-mask-image:linear-gradient(transparent 8%,#000 60%);
+    mask-image:linear-gradient(transparent 8%,#000 60%);
+    animation:gridmove 2.4s linear infinite}
+  @keyframes gridmove{to{background-position:0 0,0 56px}}
+  .proj,.skill,.stat,.award,.quick a{will-change:transform}
+  #prog{position:fixed;top:0;left:0;height:2px;width:0;z-index:60;
+    background:linear-gradient(90deg,var(--accent-deep),var(--accent));
+    box-shadow:0 0 12px rgba(100,232,210,.55)}
+  #dust{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55}
+  .nav-links a.act{color:var(--accent)}
+  .shimmer{background:linear-gradient(100deg,var(--ink) 42%,#C6FFF4 50%,var(--ink) 58%);
+    background-size:230% 100%;background-position:130% 0;
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+    animation:sheen 7s ease-in-out infinite}
+  @keyframes sheen{0%,55%{background-position:130% 0}80%,100%{background-position:-55% 0}}
+  .sec-head::after{transform:scaleX(0);transform-origin:left;transition:transform 1.1s ease .2s}
+  .sec-head.on::after{transform:scaleX(1)}
+  .badge.live::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;
+    background:var(--accent);margin-right:7px;vertical-align:1px;
+    box-shadow:0 0 8px var(--accent);animation:beat 1.7s ease-in-out infinite}
+  @keyframes beat{0%,100%{opacity:.3}50%{opacity:1}}
+  @media (hover:none){#glow{display:none}}
+  @media (prefers-reduced-motion: reduce){
+    #glow,#dust{display:none}
+    .gridfloor{animation:none}
+    .shimmer{animation:none;background-position:130% 0}
+    .badge.live::before{animation:none}
+    .sec-head::after{transition:none;transform:scaleX(1)}
+  }
+
+  /* ── Footer ──────────────────────────────────── */
+  footer{border-top:1px solid var(--line);padding:34px 0 44px}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+  .foot,.foot a{font-family:var(--mono);font-size:11.5px;color:var(--faint)}
+  .foot a:hover{color:var(--accent)}
+  .foot .socials{display:flex;gap:18px}
+</style>
 </head>
-
 <body>
+<div id="prog" aria-hidden="true"></div>
+<canvas id="dust" aria-hidden="true"></canvas>
+<div id="glow" aria-hidden="true"></div>
 
-  <!-- ======= Mobile nav toggle button ======= -->
-  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+<nav aria-label="Primary">
+  <div class="nav-in">
+    <a class="brand" href="#top">NTS<b>_</b></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navlinks">MENU</button>
+    <ul class="nav-links" id="navlinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
 
-  <!-- ======= Header ======= -->
-  <header id="header">
-    <div class="d-flex flex-column">
-
-      <div class="profile">
-        <img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
-        <h1 class="text-light"><a href="index.html">Nikhil Saunshi</a></h1>
-        <div class="social-links mt-3 text-center">
-          <a href="https://github.com/nikhil-saunshi" class="twitter" target="_blank"><i class="bx bxl-github"></i></a>
-          <a href="https://www.instagram.com/nikhil_saunshi/" class="instagram" target="_blank"><i class="bx bxl-instagram"></i></a>
-          <a href="https://www.linkedin.com/in/nikhil-saunshi/" class="linkedin" target="_blank"><i
-              class="bx bxl-linkedin"></i></a>
-        </div>
-      </div>
-
-      <nav id="navbar" class="nav-menu navbar">
-        <ul>
-          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
-          <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
-          <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Timeline</span></a>
-          </li>
-          <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i>
-              <span>Projects</span></a></li>
-          <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Skills</span></a></li>
-          <li><a href="#awards" class="nav-link scrollto"><i class="bx bx-trophy"></i> <span>Awards</span></a></li>
-          <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
-        </ul>
-      </nav><!-- .nav-menu -->
+<!-- ═══ HERO ═══ -->
+<header class="hero" id="top">
+  <canvas id="lattice" aria-hidden="true"></canvas>
+  <div class="gridfloor" aria-hidden="true"></div>
+  <div class="wrap hero-in">
+    <p class="eyebrow">Automation · Validation · AI Infrastructure</p>
+    <h1><span class="thin">Hi, I'm</span><span class="shimmer">Nikhil Saunshi</span></h1>
+    <p class="role-line"><span id="role"></span><span class="cur" aria-hidden="true"></span></p>
+    <div class="cta-row">
+      <a class="btn primary" href="#projects">View work</a>
+      <a class="btn" href="#contact">Get in touch</a>
     </div>
-  </header><!-- End Header -->
+  </div>
+  <span class="scroll-hint" aria-hidden="true">scroll</span>
+  <span class="topo" id="topo" aria-hidden="true"></span>
+</header>
 
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
-    <div class="hero-container" data-aos="fade-in">
-      <h1>Nikhil T. Saunshi</h1>
-      <p>I'm <span class="typed"
-          data-typed-items="a Sr. Systems Engineer, a Battery SQA Engineer, a Python Automation Expert, an AI Infrastructure Engineer, an Athlete"></span>
-      </p>
-    </div>
-  </section><!-- End Hero -->
+<main>
 
-  <main id="main">
-
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>About</h2>
+<!-- ═══ 01 ABOUT ═══ -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">01</span><h2>About</h2></div>
+    <div class="about-grid">
+      <div class="about-copy reveal">
+        <p>I'm an <b>automation engineer first</b>. For <b><span class="yoe"></span> years at Meta and
+        Apple</b> I've built the Python frameworks that decide whether hardware is allowed to ship,
+        validating GPU clusters, embedded platforms, and battery systems at fleet scale. Networking,
+        firmware, OS, silicon: those are the layers my automation interrogates, not my job title. And
+        every verdict my frameworks deliver is <b>data-driven</b>, built on measurements, baselines, and
+        regression evidence rather than gut feel.</p>
+        <p>In 2025 I put <b>LLM agents inside a production validation framework</b>, orchestrating 500+
+        test procedures back when "AI in the test loop" was a slide rather than a practice. It cut cycle
+        time by 35%. Off the clock I ship complete systems: an algorithmic trading framework with
+        walk-forward validation gates, and a B2B pharma platform serving medical shops across India.
+        Published at IEEE BigData along the way.</p>
+        <div class="facts">
+          <div class="fact"><span class="k">Location</span>San Francisco Bay Area, CA</div>
+          <div class="fact"><span class="k">Degree</span>M.S. Computer Engineering, SJSU</div>
+          <div class="fact"><span class="k">Email</span><a href="#" class="mlink" data-m="nikhilts19" data-h="gmail.com">drop me a line</a></div>
+          <div class="fact"><span class="k">Links</span><a href="https://www.linkedin.com/in/nikhil-saunshi/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/nikhil-saunshi" target="_blank" rel="noopener">GitHub</a></div>
         </div>
-
-        <div class="row">
-          <div class="col-lg-4" data-aos="fade-right">
-            <img src="assets/img/profile-img.jpg" class="img-fluid" alt="Nikhil T. Saunshi">
-          </div>
-          <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-            <h3>Sr. Systems Validation Engineer</h3>
-            <p class="fst-italic" style="color:#149ddd; margin-bottom: 16px;">
-              Apple Inc. &nbsp;|&nbsp; Battery SQA &nbsp;|&nbsp; AI Infrastructure &nbsp;|&nbsp; Python Expert &nbsp;|&nbsp; RDMA / InfiniBand
-            </p>
-            <p style="text-align:justify;">
-              I'm Nikhil — a Sr. Systems Validation Engineer with <strong><span id="yoe-inline"></span> years of experience</strong>
-              at Meta and Apple building scalable, Python-based automation frameworks for AI datacenter, embedded, and battery validation platforms.
-              I specialize in system-level debugging, network performance benchmarking (RDMA/InfiniBand), Battery SQA, and LLM-powered test orchestration.
-            </p>
-            <p style="text-align:justify;">
-              Beyond engineering, I'm a published IEEE researcher, a Cisco Hackathon runner-up, and a finalist in the
-              statewide 34th Annual CSU Student Research Competition. I hold an M.S. in Computer Engineering from
-              San José State University and thrive at the intersection of AI, infrastructure, and automation.
-            </p>
-
-            <div class="row mt-3">
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Location:</strong> <span>San Francisco Bay Area, CA</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>M.S. Computer Engineering, SJSU</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Experience:</strong> <span><span id="yoe-info"></span> Years</span></li>
-                </ul>
-              </div>
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>nikhilts19@gmail.com</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>LinkedIn:</strong> <span><a href="https://www.linkedin.com/in/nikhil-saunshi/" target="_blank">nikhil-saunshi</a></span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>GitHub:</strong> <span><a href="https://github.com/nikhil-saunshi" target="_blank">nikhil-saunshi</a></span></li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="row mt-3" style="text-align:center;">
-              <div class="col-4">
-                <div style="background:#f8f9fa; border-radius:8px; padding:14px 8px;">
-                  <h4 style="color:#149ddd; font-size:1.8rem; margin-bottom:4px;"><span id="yoe-stat"></span></h4>
-                  <span style="font-size:0.82rem; color:#555;">Years Experience</span>
-                </div>
-              </div>
-              <div class="col-4">
-                <div style="background:#f8f9fa; border-radius:8px; padding:14px 8px;">
-                  <h4 style="color:#149ddd; font-size:1.8rem; margin-bottom:4px;">2</h4>
-                  <span style="font-size:0.82rem; color:#555;">Companies (Apple &amp; Meta)</span>
-                </div>
-              </div>
-              <div class="col-4">
-                <div style="background:#f8f9fa; border-radius:8px; padding:14px 8px;">
-                  <h4 style="color:#149ddd; font-size:1.8rem; margin-bottom:4px;">1</h4>
-                  <span style="font-size:0.82rem; color:#555;">IEEE Publication</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
+        <div class="stats">
+          <div class="stat"><span class="v yoe"></span><span class="l">Years experience</span></div>
+          <div class="stat"><span class="v">2</span><span class="l">Companies · Meta & Apple</span></div>
+          <div class="stat"><span class="v">1000+</span><span class="l">Servers, firmware at once</span></div>
+          <div class="stat"><span class="v">1</span><span class="l">IEEE publication</span></div>
         </div>
-
-      </div>
-    </section><!-- End About Section -->
-
-    <!-- ======= Facts Section ======= -->
-    <!-- <section id="facts" class="facts">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Facts</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
-
-        <div class="row no-gutters">
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up">
-            <div class="count-box">
-              <i class="bi bi-emoji-smile"></i>
-              <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Happy Clients</strong> consequuntur quae</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="100">
-            <div class="count-box">
-              <i class="bi bi-journal-richtext"></i>
-              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Projects</strong> adipisci atque cum quia aut</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="200">
-            <div class="count-box">
-              <i class="bi bi-headset"></i>
-              <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Hours Of Support</strong> aut commodi quaerat</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="300">
-            <div class="count-box">
-              <i class="bi bi-people"></i>
-              <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Hard Workers</strong> rerum asperiores dolor</p>
-            </div>
-          </div>
-
-        </div>
-
-      </div> -->
-    <!-- </section> -->
-    <!-- End Facts Section -->
-
-    <!-- ======= Skills Section ======= -->
-    <!-- <section id="skills" class="skills section-bg">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Skills</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
-
-        <div class="row skills-content">
-
-          <div class="col-lg-6" data-aos="fade-up">
-
-            <div class="progress">
-              <span class="skill">HTML <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">CSS <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">JavaScript <i class="val">75%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-
-            <div class="progress">
-              <span class="skill">PHP <i class="val">80%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">WordPress/CMS <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">Photoshop <i class="val">55%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div> -->
-    <!-- </section> -->
-    <!-- End Skills Section -->
-
-    <!-- ======= Timeline/ Resume Section ======= -->
-    <section id="resume" class="resume">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Timeline</h2>
-        </div>
-
-        <style>
-          .vtl { position: relative; padding-left: 36px; }
-          .vtl::before { content:''; position:absolute; left:10px; top:0; bottom:0; width:2px; background:#e0e0e0; }
-          .vtl-item { position:relative; margin-bottom:28px; }
-          .vtl-item::before { content:''; position:absolute; left:-30px; top:6px; width:12px; height:12px; border-radius:50%; background:#149ddd; border:2px solid #fff; box-shadow:0 0 0 2px #149ddd; }
-          .vtl-item.edu::before { background:#fff; border:2px solid #149ddd; box-shadow:0 0 0 2px #149ddd; }
-          .vtl-header { display:flex; align-items:baseline; flex-wrap:wrap; gap:8px; margin-bottom:3px; }
-          .vtl-title { font-family:'Raleway',sans-serif; font-weight:700; font-size:0.97rem; color:#272829; margin:0; }
-          .vtl-badge { font-size:0.72rem; background:#149ddd; color:#fff; padding:2px 8px; border-radius:20px; white-space:nowrap; }
-          .vtl-badge.edu-badge { background:#e8f6fd; color:#149ddd; }
-          .vtl-meta { font-size:0.82rem; color:#888; margin-bottom:5px; }
-          .vtl-bullets { margin:0; padding-left:16px; }
-          .vtl-bullets li { font-size:0.83rem; color:#555; margin-bottom:3px; }
-          details.vtl-details summary { cursor:pointer; font-size:0.8rem; color:#149ddd; list-style:none; margin-top:4px; user-select:none; }
-          details.vtl-details summary::after { content:' ▸ show more'; }
-          details.vtl-details[open] summary::after { content:' ▾ show less'; }
-          details.vtl-details summary::-webkit-details-marker { display:none; }
-        </style>
-
-        <div class="row">
-          <div class="col-lg-7" data-aos="fade-up">
-
-            <h5 style="font-family:'Raleway',sans-serif; font-weight:600; color:#149ddd; margin-bottom:18px; letter-spacing:0.5px;">
-              <i class="bi bi-briefcase me-2"></i>Experience
-            </h5>
-
-            <div class="vtl">
-
-              <div class="vtl-item">
-                <div class="vtl-header">
-                  <span class="vtl-title">Sr. Systems Validation Engineer</span>
-                  <span class="vtl-badge">Apr 2025 – Present</span>
-                </div>
-                <div class="vtl-meta">Apple Inc. &nbsp;·&nbsp; Cupertino, CA</div>
-                <ul class="vtl-bullets">
-                  <li>Leading Battery SQA and Gas Gauge validation for NPI devices with Python-based automation frameworks.</li>
-                  <li>Built AI Orchestration layer for test workflows, reducing cycle time by <strong>35%</strong> and onboarding time by <strong>60%</strong>.</li>
-                </ul>
-                <details class="vtl-details">
-                  <summary></summary>
-                  <ul class="vtl-bullets" style="margin-top:4px;">
-                    <li>Drove resolution of critical battery defects through root cause analysis with hardware, firmware, and design teams.</li>
-                    <li>Developed LLM-powered test orchestration across 500+ test procedures for scalable regression coverage.</li>
-                  </ul>
-                </details>
-              </div>
-
-              <div class="vtl-item">
-                <div class="vtl-header">
-                  <span class="vtl-title">Automation Engineer</span>
-                  <span class="vtl-badge">May 2023 – Mar 2025</span>
-                </div>
-                <div class="vtl-meta">Apple Inc. &nbsp;·&nbsp; San Diego, CA</div>
-                <ul class="vtl-bullets">
-                  <li>Managed Python automation framework for 400+ DUTs, achieving <strong>99.5%</strong> uptime.</li>
-                  <li>Achieved <strong>8× throughput</strong> improvement, cutting daily test time from 6 hrs to 45 mins.</li>
-                </ul>
-                <details class="vtl-details">
-                  <summary></summary>
-                  <ul class="vtl-bullets" style="margin-top:4px;">
-                    <li>Built robotic HIL automation for Siri and gesture recognition, eliminating 20+ hrs/week of manual effort.</li>
-                  </ul>
-                </details>
-              </div>
-
-              <div class="vtl-item">
-                <div class="vtl-header">
-                  <span class="vtl-title">Software Engineer – AI Infrastructure Validation</span>
-                  <span class="vtl-badge">Mar 2020 – Apr 2023</span>
-                </div>
-                <div class="vtl-meta">Meta Platforms, Inc. &nbsp;·&nbsp; Menlo Park, CA</div>
-                <ul class="vtl-bullets">
-                  <li>Built Python automation framework to validate next-gen AI/ML accelerators (H100 GPU) for Meta's datacenter.</li>
-                  <li>Automated firmware deployment across <strong>1,000+ Linux servers</strong>, reducing update cycles from 3 days to 4 hrs.</li>
-                </ul>
-                <details class="vtl-details">
-                  <summary></summary>
-                  <ul class="vtl-bullets" style="margin-top:4px;">
-                    <li>Developed distributed performance benchmarking using iPerf2/3 and perftest (RDMA) across multi-node GPU clusters.</li>
-                    <li>Mentored 3 engineers on scalable framework design and distributed architecture.</li>
-                  </ul>
-                </details>
-              </div>
-
-              <div class="vtl-item">
-                <div class="vtl-header">
-                  <span class="vtl-title">ML Research Assistant</span>
-                  <span class="vtl-badge">Mar 2019 – Dec 2019</span>
-                </div>
-                <div class="vtl-meta">Tower Foundation – San José State University &nbsp;·&nbsp; San José, CA</div>
-                <ul class="vtl-bullets">
-                  <li>Built end-to-end ML pipeline achieving <strong>91% F1-score</strong> in multi-class text classification using NLP/NLTK.</li>
-                </ul>
-              </div>
-
-              <div class="vtl-item">
-                <div class="vtl-header">
-                  <span class="vtl-title">Programmer Analyst</span>
-                  <span class="vtl-badge">May 2016 – Jun 2017</span>
-                </div>
-                <div class="vtl-meta">Cognizant Technology Solutions &nbsp;·&nbsp; India &nbsp;·&nbsp; <em>Client: CVS Health</em></div>
-                <ul class="vtl-bullets">
-                  <li>Queried, analyzed, and reviewed payment accuracy in batch processing of claims data using the RxClaim system.</li>
-                </ul>
-              </div>
-
-            </div><!-- end vtl -->
-          </div>
-
-          <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
-
-            <h5 style="font-family:'Raleway',sans-serif; font-weight:600; color:#149ddd; margin-bottom:18px; letter-spacing:0.5px;">
-              <i class="bi bi-mortarboard me-2"></i>Education
-            </h5>
-
-            <div class="vtl">
-
-              <div class="vtl-item edu">
-                <div class="vtl-header">
-                  <span class="vtl-title">M.S. Computer Engineering</span>
-                  <span class="vtl-badge edu-badge">Dec 2019</span>
-                </div>
-                <div class="vtl-meta">San José State University &nbsp;·&nbsp; San José, CA</div>
-                <div style="font-size:0.8rem; color:#777;">Data Structures, ML, Computer Architecture, Large-Scale Analytics</div>
-              </div>
-
-              <div class="vtl-item edu">
-                <div class="vtl-header">
-                  <span class="vtl-title">B.E. Electronics &amp; Communication</span>
-                  <span class="vtl-badge edu-badge">Aug 2015</span>
-                </div>
-                <div class="vtl-meta">M.S. Ramaiah Institute of Technology &nbsp;·&nbsp; Bangalore, India</div>
-                <div style="font-size:0.8rem; color:#777;">OOP, Operating Systems, Neural Networks, Fuzzy Systems</div>
-              </div>
-
-            </div><!-- end vtl -->
-
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Resume Section -->
-
-    <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio section-bg">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Projects</h2>
-          <p>A selection of personal and academic projects. View more on <a href="https://github.com/nikhil-saunshi" target="_blank">GitHub</a>.</p>
-        </div>
-
-        <div class="row" data-aos="fade-up">
-
-          <!-- Project 1 -->
-          <div class="col-lg-6 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="50">
-            <div class="card h-100 shadow-sm border-0" style="border-radius:10px; overflow:hidden;">
-              <img src="https://images.unsplash.com/photo-1682137698664-7f99379146e6?auto=format&fit=crop&w=800&q=80"
-                class="card-img-top" alt="Sales Analytics" style="height:200px; object-fit:cover;">
-              <div class="card-body d-flex flex-column" style="padding:20px;">
-                <h5 class="card-title" style="font-family:'Raleway',sans-serif; font-weight:700;">Real-Time Sales Analytics &amp; Visualization</h5>
-                <p class="card-text" style="font-size:0.88rem; color:#555; flex-grow:1;">
-                  Python application using REST calls to deliver fully-editable, on-demand PowerPoint sales decks with automatic business analytics, brand-appropriate charts, and one-click generation.
-                </p>
-                <div class="mt-2 mb-3">
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">Python</span>
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">REST API</span>
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">python-pptx</span>
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">Matplotlib</span>
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">Unittest</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 2 -->
-          <div class="col-lg-6 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="card h-100 shadow-sm border-0" style="border-radius:10px; overflow:hidden;">
-              <img src="https://images.unsplash.com/photo-1608469926865-b2d2200bb2f6?auto=format&fit=crop&w=800&q=80"
-                class="card-img-top" alt="Sentiment Analysis" style="height:200px; object-fit:cover;">
-              <div class="card-body d-flex flex-column" style="padding:20px;">
-                <h5 class="card-title" style="font-family:'Raleway',sans-serif; font-weight:700;">Sentiment Analysis on Yelp Data</h5>
-                <p class="card-text" style="font-size:0.88rem; color:#555; flex-grow:1;">
-                  EDA on Yelp business and review datasets merged with Pandas. Applied NLP/NLTK for text preprocessing and built a classifier to detect negative/positive sentiments, benchmarked against 5-star ratings.
-                </p>
-                <div class="mt-2 mb-3">
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">Python</span>
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">Pandas</span>
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">NLTK</span>
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">Scikit-learn</span>
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">Seaborn</span>
-                </div>
-                <a href="https://github.com/nikhil-saunshi/Sentiment-Analysis-on-Yelp-Data" target="_blank"
-                  class="btn btn-sm mt-auto" style="background:#149ddd; color:#fff; border-radius:5px; width:fit-content;">
-                  <i class="bx bxl-github"></i> View on GitHub
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 3 -->
-          <div class="col-lg-6 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="150">
-            <div class="card h-100 shadow-sm border-0" style="border-radius:10px; overflow:hidden;">
-              <img src="https://images.unsplash.com/photo-1527430253228-e93688616381?auto=format&fit=crop&w=800&q=80"
-                class="card-img-top" alt="Digit Recognizer" style="height:200px; object-fit:cover;">
-              <div class="card-body d-flex flex-column" style="padding:20px;">
-                <h5 class="card-title" style="font-family:'Raleway',sans-serif; font-weight:700;">Digit Recognizer (MNIST)</h5>
-                <p class="card-text" style="font-size:0.88rem; color:#555; flex-grow:1;">
-                  Handwritten digit recognition using the MNIST dataset. Trained and evaluated multiple ML classifiers including Random Forest, with data analysis and visualization of model performance metrics.
-                </p>
-                <div class="mt-2 mb-3">
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">Python</span>
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">Random Forest</span>
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">Scikit-learn</span>
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">MNIST</span>
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">Classification</span>
-                </div>
-                <a href="https://github.com/nikhil-saunshi/Digit-Recognizer" target="_blank"
-                  class="btn btn-sm mt-auto" style="background:#149ddd; color:#fff; border-radius:5px; width:fit-content;">
-                  <i class="bx bxl-github"></i> View on GitHub
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 4 -->
-          <div class="col-lg-6 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
-            <div class="card h-100 shadow-sm border-0" style="border-radius:10px; overflow:hidden;">
-              <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
-                class="card-img-top" alt="Find My Keys" style="height:200px; object-fit:cover;">
-              <div class="card-body d-flex flex-column" style="padding:20px;">
-                <h5 class="card-title" style="font-family:'Raleway',sans-serif; font-weight:700;">Find My Keys — Hands-Free</h5>
-                <p class="card-text" style="font-size:0.88rem; color:#555; flex-grow:1;">
-                  Voice-activated personal assistant using an Alexa Voice Service (AVS) device on Raspberry Pi. Built a custom Alexa skill deployed on AWS Lambda to trigger Bluetooth alerts on a key tag for hands-free key finding.
-                </p>
-                <div class="mt-2 mb-3">
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">Python</span>
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">AWS Lambda</span>
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">Alexa AVS</span>
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">Raspberry Pi</span>
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">Bluetooth</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 5 -->
-          <div class="col-lg-6 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="250">
-            <div class="card h-100 shadow-sm border-0" style="border-radius:10px; overflow:hidden;">
-              <img src="https://images.unsplash.com/photo-1526378722484-bd91ca387e72?auto=format&fit=crop&w=800&q=80"
-                class="card-img-top" alt="Web Scraper" style="height:200px; object-fit:cover;">
-              <div class="card-body d-flex flex-column" style="padding:20px;">
-                <h5 class="card-title" style="font-family:'Raleway',sans-serif; font-weight:700;">Wikipedia City Data Web Scraper</h5>
-                <p class="card-text" style="font-size:0.88rem; color:#555; flex-grow:1;">
-                  Python web scraper that collects structured data about the top cities in the United States from Wikipedia. Parses and cleans tabular data for downstream analysis and visualization.
-                </p>
-                <div class="mt-2 mb-3">
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">Python</span>
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">BeautifulSoup</span>
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">Pandas</span>
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">Jupyter Notebook</span>
-                </div>
-                <a href="https://github.com/nikhil-saunshi/Web_Scraper" target="_blank"
-                  class="btn btn-sm mt-auto" style="background:#149ddd; color:#fff; border-radius:5px; width:fit-content;">
-                  <i class="bx bxl-github"></i> View on GitHub
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 6 -->
-          <div class="col-lg-6 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
-            <div class="card h-100 shadow-sm border-0" style="border-radius:10px; overflow:hidden;">
-              <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80"
-                class="card-img-top" alt="Landmark Recognition" style="height:200px; object-fit:cover;">
-              <div class="card-body d-flex flex-column" style="padding:20px;">
-                <h5 class="card-title" style="font-family:'Raleway',sans-serif; font-weight:700;">Google Landmark Recognition</h5>
-                <p class="card-text" style="font-size:0.88rem; color:#555; flex-grow:1;">
-                  Kaggle competition solution for Google's landmark recognition challenge. Built and trained image classification models to identify global landmarks from photos at scale.
-                </p>
-                <div class="mt-2 mb-3">
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">Python</span>
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">Keras</span>
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">CNN</span>
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">Kaggle</span>
-                  <span class="badge" style="background:#149ddd; color:#fff; margin:2px; padding:5px 9px; border-radius:4px; font-size:0.75rem;">Image Classification</span>
-                </div>
-                <a href="https://github.com/nikhil-saunshi/Google_landmark_recognition" target="_blank"
-                  class="btn btn-sm mt-auto" style="background:#149ddd; color:#fff; border-radius:5px; width:fit-content;">
-                  <i class="bx bxl-github"></i> View on GitHub
-                </a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="text-center mt-2" data-aos="fade-up">
-          <a href="https://github.com/nikhil-saunshi" target="_blank"
-            class="btn" style="background:#149ddd; color:#fff; padding:10px 30px; border-radius:5px; font-family:'Raleway',sans-serif; font-weight:600;">
-            <i class="bx bxl-github me-2"></i> View All Projects on GitHub
-          </a>
-        </div>
-
-      </div>
-    </section>
-    <!-- End Portfolio Section -->
-
-
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Skills</h2>
-          <!-- <p>My skills section showcases my proficiency in a variety of technical and soft skills.</p> -->
-        </div>
-
-        <div class="row">
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up">
-            <div class="icon"><i class="bi bi-code"></i></div>
-            <h4 class="title"><a>Languages</a></h4>
-            <p class="description">Python (Expert) </br>Bash / Shell Scripting </br>C++ </br>SQL </br>JavaScript </br>HTML / CSS</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
-            <div class="icon"><i class="bi bi-hdd-network"></i></div>
-            <h4 class="title"><a>Networking &amp; HPC</a></h4>
-            <p class="description">InfiniBand </br>RoCE / RDMA </br>TCP/IP / Ethernet </br>iPerf2/3 </br>perftest </br>NIC Validation (Mellanox/Broadcom)</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon"><i class="bi bi-cloud"></i></div>
-            <h4 class="title"><a>Test &amp; Validation</a></h4>
-            <p class="description">PyTest </br>Unittest </br>Functional / Integration / Regression Testing </br>Multi-threaded Execution </br>HIL Testing</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
-            <div class="icon"><i class="bi bi-server"></i></div>
-            <h4 class="title"><a>Infrastructure</a></h4>
-            <p class="description">Linux (RHEL/Ubuntu) </br>Docker </br>Ansible </br>Git / GitLab </br>MySQL </br>Distributed Systems </br>BMC / IPMI</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">
-            <div class="icon"><i class="bi bi-cpu"></i></div>
-            <h4 class="title"><a>Hardware</a></h4>
-            <p class="description">Device Orchestration (400+ DUTs) </br>Firmware Deployment </br>NIC Configuration </br>GPU / NPU Validation </br>System Debugging</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="500">
-            <div class="icon"><i class="bi bi-brightness-high"></i></div>
-            <h4 class="title"><a>AI &amp; Automation</a></h4>
-            <p class="description">Claude Code </br>MCP Servers </br>LLM Test Orchestration </br>AI Workload Validation </br>On-Device ML Testing </br>Pandas / NumPy / Scikit-learn</p>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Services Section -->
-
-
-
-    <!-- ======= Publications & Awards Section ======= -->
-    <section id="awards" class="services">
-      <div class="container">
-        <div class="section-title">
-          <h2>Publications &amp; Awards</h2>
-        </div>
-        <div class="row">
-
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up">
-            <div class="icon"><i class="bi bi-journal-richtext"></i></div>
-            <h4 class="title">IEEE BigData 2019</h4>
-            <p class="description" style="font-size:0.88rem;">
-              Co-authored IEEE paper: <em>"A SERP Mining Approach for Topic Classification of DNS Requests"</em> — applied NLP and ML classification to large-scale DNS data.
-            </p>
-            <a href="https://ieeexplore.ieee.org/document/9006108/" target="_blank" style="font-size:0.82rem; color:#149ddd;">View Publication →</a>
-          </div>
-
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
-            <div class="icon"><i class="bi bi-trophy"></i></div>
-            <h4 class="title">CSU Research Competition Finalist</h4>
-            <p class="description" style="font-size:0.88rem;">
-              Finalist at the statewide <strong>34th Annual CSU Student Research Competition</strong> (2020) for research in machine learning and text classification.
-            </p>
-          </div>
-
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon"><i class="bi bi-award"></i></div>
-            <h4 class="title">Cisco Hackathon Runner-Up</h4>
-            <p class="description" style="font-size:0.88rem;">
-              Runner-up at <strong>The Bridge to Innovation</strong> Cisco Hackathon (2019), building a real-time network management solution using JavaScript and Cisco DNAC APIs.
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </section><!-- End Publications & Awards Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Contact</h2>
-          <p>I'm always open to interesting conversations, collaborations, or new opportunities.</p>
-        </div>
-
-        <!-- Quick connect cards -->
-        <div class="row mb-4 justify-content-center" data-aos="fade-up">
-          <div class="col-md-3 mb-3">
-            <a href="mailto:nikhilts19@gmail.com" style="text-decoration:none;">
-              <div style="background:#fff; border-radius:10px; padding:22px 16px; text-align:center; box-shadow:0 2px 12px rgba(0,0,0,0.08); transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-                <i class="bi bi-envelope-fill" style="font-size:2rem; color:#149ddd;"></i>
-                <h5 style="margin-top:10px; font-family:'Raleway',sans-serif; font-size:0.95rem; margin-bottom:0;">Email Me</h5>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-3 mb-3">
-            <a href="https://www.linkedin.com/in/nikhil-saunshi/" target="_blank" style="text-decoration:none;">
-              <div style="background:#fff; border-radius:10px; padding:22px 16px; text-align:center; box-shadow:0 2px 12px rgba(0,0,0,0.08); transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-                <i class="bx bxl-linkedin" style="font-size:2rem; color:#149ddd;"></i>
-                <h5 style="margin-top:10px; font-family:'Raleway',sans-serif; font-size:0.95rem; margin-bottom:0;">LinkedIn</h5>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-3 mb-3">
-            <a href="https://github.com/nikhil-saunshi" target="_blank" style="text-decoration:none;">
-              <div style="background:#fff; border-radius:10px; padding:22px 16px; text-align:center; box-shadow:0 2px 12px rgba(0,0,0,0.08); transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-                <i class="bx bxl-github" style="font-size:2rem; color:#149ddd;"></i>
-                <h5 style="margin-top:10px; font-family:'Raleway',sans-serif; font-size:0.95rem; margin-bottom:0;">GitHub</h5>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <div class="row justify-content-center" data-aos="fade-in">
-          <div class="col-lg-8">
-            <style>
-              .modern-form .field-wrap { position: relative; margin-bottom: 22px; }
-              .modern-form label { display: block; font-size: 12px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: #888; margin-bottom: 6px; font-family: 'Raleway', sans-serif; }
-              .modern-form input, .modern-form textarea {
-                width: 100%; padding: 12px 16px; border: 1.5px solid #e0e0e0; border-radius: 8px;
-                font-size: 14px; font-family: 'Raleway', sans-serif; color: #333;
-                background: #fafafa; outline: none;
-                transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-              }
-              .modern-form input:focus, .modern-form textarea:focus {
-                border-color: #149ddd; background: #fff;
-                box-shadow: 0 0 0 3px rgba(20,157,221,0.12);
-              }
-              .modern-form textarea { resize: vertical; min-height: 140px; }
-              .modern-form .row-fields { display: flex; gap: 16px; }
-              .modern-form .row-fields .field-wrap { flex: 1; }
-              @media (max-width: 576px) { .modern-form .row-fields { flex-direction: column; gap: 0; } }
-            </style>
-            <form action="https://formsubmit.co/nikhilts19@gmail.com" method="POST" role="form" class="modern-form" style="width:100%;">
-              <!-- FormSubmit config: disable captcha, redirect back to portfolio -->
-              <input type="hidden" name="_captcha" value="false">
-              <input type="hidden" name="_next" value="https://nikhil-saunshi.github.io">
-              <input type="hidden" name="_subject" value="New message from your portfolio">
-              <div class="row-fields">
-                <div class="field-wrap">
-                  <label for="name">Your Name</label>
-                  <input type="text" name="name" id="name" placeholder="John Doe" required>
-                </div>
-                <div class="field-wrap">
-                  <label for="email">Your Email</label>
-                  <input type="email" name="email" id="email" placeholder="john@example.com" required>
-                </div>
-              </div>
-              <div class="field-wrap">
-                <label for="subject">Subject</label>
-                <input type="text" name="subject" id="subject" placeholder="Let's connect!" required>
-              </div>
-              <div class="field-wrap">
-                <label for="message">Message</label>
-                <textarea name="message" id="message" placeholder="Your message here..." required></textarea>
-              </div>
-              <div class="text-center">
-                <button type="submit" style="background:#149ddd; color:#fff; border:none; padding:12px 40px; border-radius:6px; font-family:'Raleway',sans-serif; font-size:15px; font-weight:600; letter-spacing:0.5px; cursor:pointer; transition:background 0.3s ease, transform 0.2s ease; box-shadow:0 4px 14px rgba(20,157,221,0.35);" onmouseover="this.style.background='#1287b8';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#149ddd';this.style.transform='translateY(0)'">
-                  <i class="bi bi-send me-2"></i>Send Message
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Contact Section -->
-
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="container">
-      <div class="copyright">
-        &copy; <script>document.write(new Date().getFullYear())</script> Nikhil T. Saunshi
       </div>
     </div>
-  </footer><!-- End Footer -->
+  </div>
+</section>
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-      class="bi bi-arrow-up-short"></i></a>
+<!-- ═══ 02 EXPERIENCE ═══ -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">02</span><h2>Experience</h2></div>
+    <div class="xp-cols">
+      <div class="reveal">
+        <p class="xp-colhead">Work</p>
+        <div class="xp">
+          <div class="xp-item">
+            <span class="xp-date">Apr 2025 – Present</span>
+            <h3 class="xp-title">Battery SQA Engineer</h3>
+            <p class="xp-org">Apple Inc. · Cupertino, CA</p>
+            <ul>
+              <li>Battery Systems Validation on NPI devices: Gas Gauge and system-level coverage through Python automation frameworks.</li>
+              <li>Built an AI orchestration layer for test workflows, delivering <b>35% faster cycles</b> and <b>60% faster onboarding</b>.</li>
+              <li>LLM-powered test orchestration across <b>500+ procedures</b> for scalable regression coverage.</li>
+              <li>Drive resolution of critical system defects with hardware, firmware, and design teams.</li>
+            </ul>
+          </div>
+          <div class="xp-item">
+            <span class="xp-date">May 2023 – Mar 2025</span>
+            <h3 class="xp-title">Automation Engineer</h3>
+            <p class="xp-org">Apple Inc. · San Diego, CA</p>
+            <ul>
+              <li>Ran the Python framework managing <b>400+ DUTs</b> at <b>99.5% uptime</b>.</li>
+              <li><b>8× throughput</b> improvement, cutting daily test execution from 6 hours to 45 minutes.</li>
+              <li>Robotic HIL automation for Siri &amp; gesture validation, saving 20+ hrs/week of manual effort.</li>
+            </ul>
+          </div>
+          <div class="xp-item">
+            <span class="xp-date">Mar 2020 – Apr 2023</span>
+            <h3 class="xp-title">Software Engineer, AI Infrastructure Validation</h3>
+            <p class="xp-org">Meta Platforms, Inc. · Menlo Park, CA</p>
+            <ul>
+              <li>Validated next-gen AI/ML accelerators (H100) for Meta's datacenter fleet.</li>
+              <li>Distributed RDMA/InfiniBand benchmarking (iPerf, perftest) across multi-node GPU clusters.</li>
+              <li>Automated firmware deployment on <b>1,000+ Linux servers</b>, taking update cycles from 3 days to 4 hours.</li>
+              <li>Mentored 3 engineers on scalable framework design.</li>
+            </ul>
+          </div>
+          <div class="xp-item">
+            <span class="xp-date">Mar 2019 – Dec 2019</span>
+            <h3 class="xp-title">ML Research Assistant</h3>
+            <p class="xp-org">Tower Foundation · San José State University</p>
+            <ul>
+              <li>End-to-end NLP pipeline reaching <b>91% F1</b> on multi-class text classification.</li>
+            </ul>
+          </div>
+          <div class="xp-item">
+            <span class="xp-date">May 2016 – Jun 2017</span>
+            <h3 class="xp-title">Programmer Analyst</h3>
+            <p class="xp-org">Cognizant · India · Client: CVS Health</p>
+            <ul>
+              <li>Payment-accuracy analysis on batch claims processing (RxClaim).</li>
+            </ul>
+          </div>
+        </div>
+        <p class="xp-note">* Roles at Apple and Meta held through HCL Technologies.</p>
+      </div>
+      <div class="reveal">
+        <p class="xp-colhead">Education</p>
+        <div class="xp">
+          <div class="xp-item edu">
+            <span class="xp-date">Dec 2019</span>
+            <h3 class="xp-title">M.S. Computer Engineering</h3>
+            <p class="xp-org">San José State University · San José, CA</p>
+            <ul><li>Data Structures &amp; Algorithms, Machine Learning, Computer Architecture, Large-Scale Analytics.</li></ul>
+          </div>
+          <div class="xp-item edu">
+            <span class="xp-date">Aug 2015</span>
+            <h3 class="xp-title">B.E. Electronics &amp; Communication</h3>
+            <p class="xp-org">M.S. Ramaiah Institute of Technology · Bangalore, India</p>
+            <ul><li>OOP &amp; Data Structures, Operating Systems, Neural Networks &amp; Fuzzy Systems.</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+<!-- ═══ 03 PROJECTS ═══ -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">03</span><h2>Projects</h2></div>
+    <p class="sec-sub reveal">Shipped end-to-end, from schema to pixels: hardware-grade rigor, consumer-grade finish.</p>
+    <div class="proj-grid">
+      <article class="proj flag reveal">
+        <div class="proj-top"><h3>tbot · Algorithmic Trading Framework</h3><span class="badge">Private build</span></div>
+        <p>A trading system that treats strategies like code under test: 20+ indicator engine, plugin
+        scanners, two-bucket risk model, walk-forward backtests behind deflated-Sharpe gates, and an
+        autonomous execution layer with hard guardrails. Ideas that fail validation don't ship, same as
+        hardware. 10K+ lines · 205 tests.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Backtesting</span><span class="tag">LLM ops</span><span class="tag">launchd</span></div>
+      </article>
+      <article class="proj flag reveal">
+        <div class="proj-top"><h3>Zyvex Healthcare · B2B Pharma Platform</h3><span class="badge live">In production</span></div>
+        <p>Commerce platform for India's pharmaceutical trade, running in production: KYC-gated ordering
+        with human verification, a trade-scheme engine, loyalty tiers, DLT-compliant SMS OTP, and a UI
+        engineered for 2G-grade connections in rural markets. FastAPI · PostgreSQL · Next.js monorepo.</p>
+        <div class="tags"><span class="tag">FastAPI</span><span class="tag">PostgreSQL</span><span class="tag">Next.js</span><span class="tag">Tailwind</span><span class="tag">Alembic</span></div>
+      </article>
+      <article class="proj reveal">
+        <div class="proj-top"><h3>Sentiment Analysis on Yelp Data</h3><span class="badge ghost">GitHub</span></div>
+        <p>EDA on Yelp business + review datasets; NLP preprocessing and a sentiment classifier
+        benchmarked against 5-star ratings.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">NLTK</span><span class="tag">Scikit-learn</span></div>
+        <a class="link" href="https://github.com/nikhil-saunshi/Sentiment-Analysis-on-Yelp-Data" target="_blank" rel="noopener">View source</a>
+      </article>
+      <article class="proj reveal">
+        <div class="proj-top"><h3>Digit Recognizer (MNIST)</h3><span class="badge ghost">GitHub</span></div>
+        <p>Handwritten digit recognition, training and comparing multiple classifiers with performance
+        visualization.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Random Forest</span><span class="tag">Scikit-learn</span></div>
+        <a class="link" href="https://github.com/nikhil-saunshi/Digit-Recognizer" target="_blank" rel="noopener">View source</a>
+      </article>
+      <article class="proj reveal">
+        <div class="proj-top"><h3>Google Landmark Recognition</h3><span class="badge ghost">GitHub</span></div>
+        <p>Kaggle challenge: CNN image classification identifying global landmarks at scale.</p>
+        <div class="tags"><span class="tag">Keras</span><span class="tag">CNN</span><span class="tag">Kaggle</span></div>
+        <a class="link" href="https://github.com/nikhil-saunshi/Google_landmark_recognition" target="_blank" rel="noopener">View source</a>
+      </article>
+      <article class="proj reveal">
+        <div class="proj-top"><h3>Wikipedia City-Data Scraper</h3><span class="badge ghost">GitHub</span></div>
+        <p>Structured scraping of US city data: parsed, cleaned, and shaped for downstream analysis.</p>
+        <div class="tags"><span class="tag">BeautifulSoup</span><span class="tag">Pandas</span><span class="tag">Jupyter</span></div>
+        <a class="link" href="https://github.com/nikhil-saunshi/Web_Scraper" target="_blank" rel="noopener">View source</a>
+      </article>
+    </div>
+  </div>
+</section>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+<!-- ═══ 04 SKILLS ═══ -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">04</span><h2>Skills</h2></div>
+    <div class="skill-grid">
+      <div class="skill reveal"><h3>Languages</h3>
+        <div class="tags"><span class="tag">Python (Expert)</span><span class="tag">Bash</span><span class="tag">C++</span><span class="tag">SQL</span><span class="tag">JavaScript</span></div>
+      </div>
+      <div class="skill reveal"><h3>Networking &amp; HPC</h3>
+        <div class="tags"><span class="tag">InfiniBand</span><span class="tag">RoCE / RDMA</span><span class="tag">TCP/IP</span><span class="tag">iPerf2/3</span><span class="tag">perftest</span><span class="tag">NIC validation</span></div>
+      </div>
+      <div class="skill reveal"><h3>Test &amp; Validation</h3>
+        <div class="tags"><span class="tag">PyTest</span><span class="tag">HIL testing</span><span class="tag">Regression</span><span class="tag">Multi-threaded execution</span><span class="tag">Functional / Integration</span></div>
+      </div>
+      <div class="skill reveal"><h3>Infrastructure</h3>
+        <div class="tags"><span class="tag">Linux (RHEL/Ubuntu)</span><span class="tag">Docker</span><span class="tag">Ansible</span><span class="tag">Git</span><span class="tag">MySQL</span><span class="tag">BMC / IPMI</span><span class="tag">Distributed systems</span></div>
+      </div>
+      <div class="skill reveal"><h3>Hardware</h3>
+        <div class="tags"><span class="tag">400+ DUT orchestration</span><span class="tag">Firmware deployment</span><span class="tag">GPU / NPU validation</span><span class="tag">System debugging</span></div>
+      </div>
+      <div class="skill reveal"><h3>AI &amp; Automation</h3>
+        <div class="tags"><span class="tag">Claude Code</span><span class="tag">MCP servers</span><span class="tag">LLM test orchestration</span><span class="tag">AI workload validation</span><span class="tag">On-device ML testing</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <script>
-    (function() {
-      var start = new Date(2016, 4, 1); // May 2016 (first professional role)
-      var gapMonths = 14;               // non-employment gap during full-time Masters (pre-RA period)
-      var now = new Date();
-      var totalMonths = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
-      var yoe = Math.floor((totalMonths - gapMonths) / 12);
-      var label = yoe + '+';
-      ['yoe-inline','yoe-info','yoe-stat'].forEach(function(id) {
-        var el = document.getElementById(id);
-        if (el) el.textContent = label;
+<!-- ═══ 05 AWARDS ═══ -->
+<section id="awards">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">05</span><h2>Publications &amp; Awards</h2></div>
+    <div class="award-grid">
+      <div class="award reveal">
+        <span class="yr">2019</span>
+        <h3>IEEE BigData Publication</h3>
+        <p>"A SERP Mining Approach for Topic Classification of DNS Requests", applying NLP and ML
+        classification to large-scale DNS data.</p>
+        <a href="https://ieeexplore.ieee.org/document/9006108/" target="_blank" rel="noopener">View publication</a>
+      </div>
+      <div class="award reveal">
+        <span class="yr">2020</span>
+        <h3>CSU Research Competition Finalist</h3>
+        <p>Statewide finalist, 34th Annual CSU Student Research Competition, for ML text-classification research.</p>
+      </div>
+      <div class="award reveal">
+        <span class="yr">2019</span>
+        <h3>Cisco Hackathon Runner-Up</h3>
+        <p>"The Bridge to Innovation", building real-time network management with JavaScript and Cisco
+        DNAC APIs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 06 CONTACT ═══ -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">06</span><h2>Contact</h2></div>
+    <p class="sec-sub reveal">Open to senior and staff roles in AI infrastructure, systems validation, and test platforms, or just a good conversation.</p>
+    <div class="contact-grid">
+      <div class="quick reveal">
+        <a href="#" class="mlink" data-m="nikhilts19" data-h="gmail.com"><span class="ico">MAIL</span><span>Email<span class="sub">direct to my inbox</span></span></a>
+        <a href="https://www.linkedin.com/in/nikhil-saunshi/" target="_blank" rel="noopener"><span class="ico">IN</span><span>LinkedIn<span class="sub">professional profile</span></span></a>
+        <a href="https://github.com/nikhil-saunshi" target="_blank" rel="noopener"><span class="ico">GH</span><span>GitHub<span class="sub">code &amp; builds</span></span></a>
+      </div>
+      <form class="reveal" action="https://formsubmit.co/nikhilts19@gmail.com" method="POST">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://nikhil-saunshi.github.io">
+        <input type="hidden" name="_subject" value="New message from your portfolio">
+        <div class="frow">
+          <div class="fw"><label for="name">Name</label><input type="text" id="name" name="name" placeholder="Jane Doe" required></div>
+          <div class="fw"><label for="email">Email</label><input type="email" id="email" name="email" placeholder="jane@example.com" required></div>
+        </div>
+        <div class="fw"><label for="subject">Subject</label><input type="text" id="subject" name="subject" placeholder="Let's connect" required></div>
+        <div class="fw"><label for="message">Message</label><textarea id="message" name="message" placeholder="Your message…" required></textarea></div>
+        <button class="btn primary" type="submit">Send message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="yr"></span> Nikhil Saunshi · designed and built by hand with canvas, vanilla JS, and zero frameworks</span>
+    <span class="socials">
+      <a href="https://github.com/nikhil-saunshi" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/nikhil-saunshi/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.instagram.com/nikhil_saunshi/" target="_blank" rel="noopener">Instagram</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* Years of experience: May 2016 start, minus 14-month grad-school gap */
+  var start = new Date(2016,4,1), now = new Date();
+  var months = (now.getFullYear()-start.getFullYear())*12 + (now.getMonth()-start.getMonth()) - 14;
+  var yoe = Math.floor(months/12) + "+";
+  document.querySelectorAll(".yoe").forEach(function(el){ el.textContent = yoe; });
+  document.getElementById("yr").textContent = now.getFullYear();
+
+  /* Mobile menu */
+  var mb = document.getElementById("menuBtn"), nl = document.getElementById("navlinks");
+  if (mb && nl){
+    mb.addEventListener("click", function(){
+      var open = nl.classList.toggle("open");
+      mb.textContent = open ? "CLOSE" : "MENU";
+      mb.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    nl.querySelectorAll("a").forEach(function(a3){
+      a3.addEventListener("click", function(){
+        nl.classList.remove("open"); mb.textContent = "MENU";
+        mb.setAttribute("aria-expanded","false");
       });
-    })();
-  </script>
-</body>
+    });
+  }
 
+  /* Obfuscated email: address never appears in the HTML source */
+  document.querySelectorAll(".mlink").forEach(function(a){
+    a.setAttribute("aria-label","Send me an email");
+    a.addEventListener("click", function(ev){
+      ev.preventDefault();
+      window.location.href = "mailto:" + a.dataset.m + "@" + a.dataset.h;
+    });
+  });
+
+  var canHover = window.matchMedia("(hover:hover)").matches;
+
+  /* Cursor glow */
+  var glow = document.getElementById("glow");
+  if (glow && canHover && !reduced){
+    window.addEventListener("pointermove", function(e){
+      glow.style.opacity = 1;
+      glow.style.transform = "translate(" + (e.clientX-280) + "px," + (e.clientY-280) + "px)";
+    }, {passive:true});
+  }
+
+  /* 3D tilt on cards */
+  if (canHover && !reduced){
+    document.querySelectorAll(".proj,.skill,.stat,.award,.quick a").forEach(function(card){
+      card.addEventListener("pointermove", function(e){
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left)/r.width - .5;
+        var py = (e.clientY - r.top)/r.height - .5;
+        card.style.transform = "perspective(720px) rotateX(" + (py*-7).toFixed(2) +
+          "deg) rotateY(" + (px*9).toFixed(2) + "deg) translateY(-3px)";
+        card.style.transition = "transform .06s linear";
+      });
+      card.addEventListener("pointerleave", function(){
+        card.style.transition = "transform .35s ease";
+        card.style.transform = "";
+      });
+    });
+
+    /* Magnetic buttons */
+    document.querySelectorAll(".btn").forEach(function(b){
+      b.addEventListener("pointermove", function(e){
+        var r = b.getBoundingClientRect();
+        var dx = (e.clientX - (r.left+r.width/2))/r.width;
+        var dy = (e.clientY - (r.top+r.height/2))/r.height;
+        b.style.transform = "translate(" + (dx*6).toFixed(1) + "px," + (dy*5-2).toFixed(1) + "px)";
+      });
+      b.addEventListener("pointerleave", function(){ b.style.transform = ""; });
+    });
+  }
+
+  /* Count-up stats on reveal */
+  if (!reduced && "IntersectionObserver" in window){
+    var sio = new IntersectionObserver(function(es){
+      es.forEach(function(en){
+        if (!en.isIntersecting) return;
+        sio.unobserve(en.target);
+        var el = en.target, final = el.textContent.trim();
+        var num = parseInt(final, 10); if (isNaN(num)) return;
+        var suffix = final.replace(String(num), "");
+        var t0 = performance.now(), dur = 950;
+        (function step(t){
+          var k = Math.min(1, (t - t0)/dur); k = 1 - Math.pow(1-k, 3);
+          el.textContent = Math.round(num*k) + suffix;
+          if (k < 1) requestAnimationFrame(step); else el.textContent = final;
+        })(t0);
+      });
+    }, {threshold:.6});
+    document.querySelectorAll(".stat .v").forEach(function(el){ sio.observe(el); });
+  }
+
+  /* Rotating role line */
+  var roles = [
+    "Battery SQA Engineer @ Apple",
+    "Automation engineer. I build the machines that test the machines.",
+    "Battery systems · NPI validation · 400+ device fleets",
+    "Data-driven decisions. Evidence over vibes, always.",
+    "LLM agents in a production test framework, 35% faster cycles"
+  ];
+  var roleEl = document.getElementById("role");
+  if (reduced) { roleEl.textContent = roles[0]; }
+  else {
+    var ri=0, ci=0, del=false;
+    (function tick(){
+      var word = roles[ri];
+      roleEl.textContent = word.slice(0, ci);
+      var wait = del ? 26 : 52;
+      if (!del && ci === word.length) { del = true; wait = 2100; }
+      else if (del && ci === 0) { del = false; ri = (ri+1)%roles.length; wait = 350; }
+      else ci += del ? -1 : 1;
+      setTimeout(tick, wait);
+    })();
+  }
+
+  /* Scroll reveals */
+  if ("IntersectionObserver" in window && !reduced) {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("on"); io.unobserve(e.target); } });
+    }, {threshold:.12});
+    document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll(".reveal").forEach(function(el){ el.classList.add("on"); });
+  }
+
+  /* ── 3D lattice hero ─────────────────────────── */
+  var cv = document.getElementById("lattice"), cx = cv.getContext("2d");
+  var W,H,DPR, run = !reduced, hidden=false;
+  var mx=0, my=0, tmx=0, tmy=0, gx=-1, gy=-1;
+  var packets=[], pairs=[];
+
+  /* Morphing topology: sphere → cluster grid → torus (343 particles) */
+  var N=343, pts=[];
+  var GA = Math.PI*(3-Math.sqrt(5));
+  function formSphere(){ var a=[],i,y,r,th;
+    for(i=0;i<N;i++){ y=1-(i/(N-1))*2; r=Math.sqrt(Math.max(0,1-y*y)); th=GA*i;
+      a.push([Math.cos(th)*r, y, Math.sin(th)*r]); } return a; }
+  function formCluster(){ var a=[],s=7,x,y,z;      /* 7×7×7 = 343, a compute cluster */
+    for(x=0;x<s;x++)for(y=0;y<s;y++)for(z=0;z<s;z++)
+      a.push([(x/(s-1)-.5)*1.6,(y/(s-1)-.5)*1.6,(z/(s-1)-.5)*1.6]); return a; }
+  function formTorus(){ var a=[],i,u,v,R=.8,r=.35;
+    for(i=0;i<N;i++){ u=GA*i; v=GA*i*3.7;
+      a.push([(R+r*Math.cos(v))*Math.cos(u), r*Math.sin(v), (R+r*Math.cos(v))*Math.sin(u)]); } return a; }
+  function formCell(){ var a=[],i,t,th;      /* spiral-wound cylinder, a battery cell's jelly roll */
+    for(i=0;i<N;i++){ t=i/(N-1); th=GA*i*2.2;
+      var rr=.30+.30*((i%7)/6);              /* layered windings, inner→outer */
+      a.push([Math.cos(th)*rr, (t-.5)*1.55, Math.sin(th)*rr]); } return a; }
+  var FORMS=[{n:"sphere",p:formSphere()},{n:"cluster",p:formCluster()},{n:"cell",p:formCell()},{n:"torus",p:formTorus()}];
+  var fi=0, morphT=1, holdT=0, from=FORMS[0].p, to=FORMS[0].p;
+  for (var i=0;i<N;i++){
+    var q=FORMS[0].p[i];
+    pts.push({x:q[0], y:q[1], z:q[2], hot:(i%23===0)});
+  }
+  var topoEl=document.getElementById("topo"), topoTimer=null;
+  function setTopo(){
+    if(!topoEl) return;
+    var txt = "topology://" + FORMS[fi].n, i2 = 0;
+    if (reduced){ topoEl.textContent = txt; return; }
+    clearInterval(topoTimer);
+    topoTimer = setInterval(function(){
+      topoEl.textContent = txt.slice(0, ++i2);
+      if (i2 >= txt.length) clearInterval(topoTimer);
+    }, 40);
+  }
+  setTopo();
+
+  function size(){
+    DPR = Math.min(window.devicePixelRatio||1, 2);
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = W*DPR; cv.height = H*DPR;
+    cx.setTransform(DPR,0,0,DPR,0,0);
+  }
+  size(); window.addEventListener("resize", size);
+
+  window.addEventListener("pointermove", function(e){
+    tmx = (e.clientX/W - .5); tmy = (e.clientY/H - .5);
+    var r = cv.getBoundingClientRect();
+    if (e.clientY >= r.top && e.clientY <= r.bottom){ gx = e.clientX - r.left; gy = e.clientY - r.top; }
+    else { gx = -1; gy = -1; }
+  }, {passive:true});
+  document.addEventListener("visibilitychange", function(){ hidden = document.hidden; });
+
+  var P = new Array(N), lastT = 0;
+  function frame(t){
+    var dt = Math.min(100, t - (lastT || t)); lastT = t;
+    if (run && !hidden){
+      /* morph engine: hold ~6.5s, then flow into the next formation */
+      if (morphT < 1){
+        morphT = Math.min(1, morphT + dt/1650);
+        var ez = morphT < .5 ? 4*morphT*morphT*morphT : 1 - Math.pow(-2*morphT+2,3)/2;
+        for (var mi=0; mi<N; mi++){
+          var pm=pts[mi], A0=from[mi], B0=to[mi];
+          pm.x = A0[0]+(B0[0]-A0[0])*ez;
+          pm.y = A0[1]+(B0[1]-A0[1])*ez;
+          pm.z = A0[2]+(B0[2]-A0[2])*ez;
+        }
+      } else {
+        holdT += dt;
+        if (holdT > 6500){
+          holdT = 0;
+          from = pts.map(function(p){ return [p.x,p.y,p.z]; });
+          fi = (fi+1) % FORMS.length;
+          to = FORMS[fi].p; morphT = 0; setTopo();
+        }
+      }
+      mx += (tmx-mx)*.04; my += (tmy-my)*.04;
+      var R = Math.min(W,H)*.34, fov = 3.2;
+      var cxp = W*.5, cyp = H*.44;
+      var ry = t*.00010 + mx*.9, rx = .22 + Math.sin(t*.00005)*.08 + my*.5;
+      var sy=Math.sin(ry), cy_=Math.cos(ry), sx=Math.sin(rx), cx_=Math.cos(rx);
+
+      cx.clearRect(0,0,W,H);
+
+      for (var i=0;i<N;i++){
+        var p=pts[i];
+        var x1 = p.x*cy_ - p.z*sy, z1 = p.x*sy + p.z*cy_;
+        var y1 = p.y*cx_ - z1*sx,  z2 = p.y*sx + z1*cx_;
+        var s = fov/(fov - z2);
+        P[i] = [cxp + x1*R*s, cyp + y1*R*s, z2, s];
+      }
+      /* constellation edges: connect whatever is close on screen right now */
+      cx.lineWidth = 1;
+      pairs.length = 0;
+      var maxD = Math.min(W,H)*.075 + 14, maxD2 = maxD*maxD, drawn = 0;
+      for (var a1=0; a1<N && drawn<420; a1++){
+        var A=P[a1];
+        for (var b1=a1+1; b1<N; b1++){
+          var B=P[b1], ddx=A[0]-B[0];
+          if (ddx>maxD || ddx<-maxD) continue;
+          var ddy=A[1]-B[1], d2=ddx*ddx+ddy*ddy;
+          if (d2 < maxD2){
+            var al = (1-d2/maxD2) * (0.13 + ((A[2]+B[2])*.5+1)*0.11);
+            cx.strokeStyle = "rgba(158,178,172,"+al.toFixed(3)+")";
+            cx.beginPath(); cx.moveTo(A[0],A[1]); cx.lineTo(B[0],B[1]); cx.stroke();
+            if (pairs.length < 80) pairs.push([a1, b1]);
+            if (++drawn >= 420) break;
+          }
+        }
+      }
+      for (var i2=0;i2<N;i2++){
+        var q=P[i2], p2=pts[i2];
+        var rad = (p2.hot?1.9:1.1) * q[3];
+        var alp = 0.25 + (q[2]+1)*0.32;
+        if (p2.hot){
+          var pulse = .55 + .45*Math.sin(t*.002 + i2);
+          cx.fillStyle = "rgba(100,232,210,"+(alp*pulse).toFixed(3)+")";
+          cx.shadowColor = "rgba(100,232,210,.8)"; cx.shadowBlur = 7*q[3];
+        } else {
+          cx.fillStyle = "rgba(222,232,228,"+(alp*.8).toFixed(3)+")";
+          cx.shadowBlur = 0;
+        }
+        cx.beginPath(); cx.arc(q[0],q[1],rad,0,6.2832); cx.fill();
+      }
+      cx.shadowBlur = 0;
+
+      /* Cursor → lattice link lines: the sphere reaches for the pointer */
+      if (gx >= 0){
+        var near = [];
+        for (var n=0;n<N;n++){
+          var dxp = P[n][0]-gx, dyp = P[n][1]-gy, dd = dxp*dxp + dyp*dyp;
+          if (dd < 19600) near.push([dd, n]);          /* within 140px */
+        }
+        near.sort(function(p,q){return p[0]-q[0];});
+        var lim = Math.min(6, near.length);
+        for (var m=0;m<lim;m++){
+          var pn = P[near[m][1]], dist = Math.sqrt(near[m][0]);
+          var la = (1 - dist/140) * .55;
+          cx.strokeStyle = "rgba(100,232,210," + la.toFixed(3) + ")";
+          cx.lineWidth = 1;
+          cx.beginPath(); cx.moveTo(gx, gy); cx.lineTo(pn[0], pn[1]); cx.stroke();
+        }
+        if (lim > 0){
+          cx.strokeStyle = "rgba(100,232,210,.5)";
+          cx.beginPath(); cx.arc(gx, gy, 3.5, 0, 6.2832); cx.stroke();
+        }
+      }
+
+      /* data packets in flight along live edges */
+      if (pairs.length && packets.length < 4 && Math.random() < .12){
+        var pr = pairs[(Math.random()*pairs.length)|0];
+        packets.push({a:pr[0], b:pr[1], t0:t, dur:520 + Math.random()*480});
+      }
+      for (var pk=packets.length-1; pk>=0; pk--){
+        var o=packets[pk], kk=(t-o.t0)/o.dur;
+        if (kk >= 1){ packets.splice(pk,1); continue; }
+        var Pa2=P[o.a], Pb2=P[o.b];
+        cx.fillStyle = "rgba(100,232,210,.95)";
+        cx.shadowColor = "rgba(100,232,210,.9)"; cx.shadowBlur = 9;
+        cx.beginPath();
+        cx.arc(Pa2[0]+(Pb2[0]-Pa2[0])*kk, Pa2[1]+(Pb2[1]-Pa2[1])*kk, 1.8, 0, 6.2832);
+        cx.fill();
+      }
+      cx.shadowBlur = 0;
+    }
+    requestAnimationFrame(frame);
+  }
+  if (reduced){ run=false; /* single static render */
+    (function(){ var t=8000; run=true; frame(t); run=false; })();
+    /* draw once via one frame call above */
+  }
+  requestAnimationFrame(frame);
+
+  /* ── Page-level life: progress beam · scrollspy · ambient motes ── */
+  var prog = document.getElementById("prog");
+  window.addEventListener("scroll", function(){
+    var h = document.documentElement;
+    var sc = h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight);
+    if (prog) prog.style.width = (sc*100).toFixed(2) + "%";
+  }, {passive:true});
+
+  var navA = document.querySelectorAll(".nav-links a");
+  if ("IntersectionObserver" in window && navA.length){
+    var spy = new IntersectionObserver(function(es){
+      es.forEach(function(en){
+        if (!en.isIntersecting) return;
+        navA.forEach(function(a2){
+          a2.classList.toggle("act", a2.getAttribute("href") === "#" + en.target.id);
+        });
+      });
+    }, {rootMargin:"-38% 0px -55% 0px"});
+    ["about","experience","projects","skills","awards","contact"].forEach(function(id){
+      var s = document.getElementById(id); if (s) spy.observe(s);
+    });
+  }
+
+  var dc = document.getElementById("dust");
+  if (dc && !reduced){
+    var dctx = dc.getContext("2d"), DW, DH, motes = [];
+    var dsize = function(){ DW = window.innerWidth; DH = window.innerHeight;
+      dc.width = DW; dc.height = DH; };
+    dsize(); window.addEventListener("resize", dsize);
+    for (var di=0; di<70; di++){
+      motes.push({ x: Math.random()*2000, y: Math.random()*2000,
+        r: .6 + Math.random()*1.5, vx: -.08 + Math.random()*.16,
+        vy: -(.05 + Math.random()*.16), a: .08 + Math.random()*.2,
+        hot: di % 13 === 0 });
+    }
+    (function dloop(){
+      if (!document.hidden){
+        dctx.clearRect(0,0,DW,DH);
+        for (var dj=0; dj<motes.length; dj++){
+          var m = motes[dj];
+          m.x += m.vx; m.y += m.vy;
+          if (m.y < -4){ m.y = DH + 4; m.x = Math.random()*DW; }
+          if (m.x < -4) m.x = DW + 4; else if (m.x > DW + 4) m.x = -4;
+          dctx.fillStyle = m.hot
+            ? "rgba(100,232,210," + (m.a*.9).toFixed(3) + ")"
+            : "rgba(210,222,218," + (m.a*.6).toFixed(3) + ")";
+          dctx.beginPath();
+          dctx.arc(m.x % (DW+8), m.y % (DH+8), m.r, 0, 6.2832);
+          dctx.fill();
+        }
+      }
+      requestAnimationFrame(dloop);
+    })();
+  }
+})();
+</script>
+</body>
 </html>
