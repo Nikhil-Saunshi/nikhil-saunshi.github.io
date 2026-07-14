@@ -16,7 +16,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Instrument+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
   :root{
@@ -78,7 +78,7 @@
   h1{font-family:var(--disp);font-weight:800;
     font-size:clamp(44px,8.4vw,96px);line-height:.98;letter-spacing:-.015em;
     text-wrap:balance;margin-bottom:26px}
-  h1 .thin{display:block;font-weight:600;color:var(--dim);
+  h1 .thin{display:block;font-weight:700;color:var(--dim);
     font-size:clamp(20px,3vw,34px);letter-spacing:.01em;margin-bottom:10px}
   .role-line{font-family:var(--mono);font-size:clamp(13px,1.9vw,17px);color:var(--dim);
     min-height:1.7em;margin-bottom:40px}
@@ -110,7 +110,7 @@
   .sec-num{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.15em}
   h2{font-family:var(--disp);font-weight:700;font-size:clamp(26px,4vw,40px);letter-spacing:-.01em}
   .sec-head::after{content:"";flex:1;height:1px;background:var(--line);align-self:center}
-  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .5s ease,transform .5s ease}
   .reveal.on{opacity:1;transform:none}
   @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none}}
 
@@ -703,13 +703,14 @@
   var mx=0, my=0, tmx=0, tmy=0, gx=-1, gy=-1;
   var packets=[], pairs=[];
 
-  /* Morphing topology: sphere → cluster grid → torus (343 particles) */
-  var N=343, pts=[];
+  /* Morphing topology: sphere → cluster grid → torus (343 particles, 216 on phones) */
+  var SMALL = window.matchMedia("(max-width:760px)").matches;
+  var N = SMALL ? 216 : 343, pts=[];
   var GA = Math.PI*(3-Math.sqrt(5));
   function formSphere(){ var a=[],i,y,r,th;
     for(i=0;i<N;i++){ y=1-(i/(N-1))*2; r=Math.sqrt(Math.max(0,1-y*y)); th=GA*i;
       a.push([Math.cos(th)*r, y, Math.sin(th)*r]); } return a; }
-  function formCluster(){ var a=[],s=7,x,y,z;      /* 7×7×7 = 343, a compute cluster */
+  function formCluster(){ var a=[],s=Math.round(Math.cbrt(N)),x,y,z;   /* s³ points, a compute cluster */
     for(x=0;x<s;x++)for(y=0;y<s;y++)for(z=0;z<s;z++)
       a.push([(x/(s-1)-.5)*1.6,(y/(s-1)-.5)*1.6,(z/(s-1)-.5)*1.6]); return a; }
   function formTorus(){ var a=[],i,u,v,R=.8,r=.35;
@@ -752,12 +753,19 @@
     if (e.clientY >= r.top && e.clientY <= r.bottom){ gx = e.clientX - r.left; gy = e.clientY - r.top; }
     else { gx = -1; gy = -1; }
   }, {passive:true});
+
+  /* Pause all lattice work once the hero scrolls out of view */
+  var heroVis = true;
+  try {
+    new IntersectionObserver(function(es){ heroVis = es[0].isIntersecting; }, {threshold: 0})
+      .observe(cv);
+  } catch(e){}
   document.addEventListener("visibilitychange", function(){ hidden = document.hidden; });
 
   var P = new Array(N), lastT = 0;
   function frame(t){
     var dt = Math.min(100, t - (lastT || t)); lastT = t;
-    if (run && !hidden){
+    if (run && !hidden && heroVis){
       /* morph engine: hold ~6.5s, then flow into the next formation */
       if (morphT < 1){
         morphT = Math.min(1, morphT + dt/1650);
@@ -903,7 +911,7 @@
     var dsize = function(){ DW = window.innerWidth; DH = window.innerHeight;
       dc.width = DW; dc.height = DH; };
     dsize(); window.addEventListener("resize", dsize);
-    for (var di=0; di<70; di++){
+    for (var di=0; di<(SMALL?36:70); di++){
       motes.push({ x: Math.random()*2000, y: Math.random()*2000,
         r: .6 + Math.random()*1.5, vx: -.08 + Math.random()*.16,
         vy: -(.05 + Math.random()*.16), a: .08 + Math.random()*.2,
