@@ -218,6 +218,10 @@
   .frow{display:flex;gap:16px}
   .frow .fw{flex:1}
   @media(max-width:580px){.frow{flex-direction:column;gap:0}}
+  #cstatus{margin-top:14px;font-family:var(--mono);font-size:12.5px;min-height:1.4em}
+  #cstatus.ok{color:var(--accent-ink)}
+  #cstatus.err{color:var(--loss)}
+  #cstatus a{color:var(--accent);text-decoration:underline}
 
   /* ── FX: glow cursor · grid floor · tilt ─────── */
   #glow{position:fixed;top:0;left:0;z-index:1;width:560px;height:560px;border-radius:50%;
@@ -538,7 +542,7 @@
         <a href="https://www.linkedin.com/in/nikhil-saunshi/" target="_blank" rel="noopener"><span class="ico">IN</span><span>LinkedIn<span class="sub">professional profile</span></span></a>
         <a href="https://github.com/nikhil-saunshi" target="_blank" rel="noopener"><span class="ico">GH</span><span>GitHub<span class="sub">code &amp; builds</span></span></a>
       </div>
-      <form class="reveal" action="https://formsubmit.co/nikhilts19@gmail.com" method="POST">
+      <form class="reveal" id="cform" action="https://formsubmit.co/6de988dcce557494668255018aad2484" method="POST">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_next" value="https://nikhil-saunshi.github.io">
         <input type="hidden" name="_subject" value="New message from your portfolio">
@@ -548,7 +552,8 @@
         </div>
         <div class="fw"><label for="subject">Subject</label><input type="text" id="subject" name="subject" placeholder="Let's connect" required></div>
         <div class="fw"><label for="message">Message</label><textarea id="message" name="message" placeholder="Your message…" required></textarea></div>
-        <button class="btn primary" type="submit">Send message</button>
+        <button class="btn primary" type="submit" id="csend">Send message</button>
+        <p id="cstatus" aria-live="polite"></p>
       </form>
     </div>
   </div>
@@ -591,6 +596,52 @@
       a3.addEventListener("click", function(){
         nl.classList.remove("open"); mb.textContent = "MENU";
         mb.setAttribute("aria-expanded","false");
+      });
+    });
+  }
+
+  /* Contact form: AJAX submit with graceful fallback (no raw 500s, ever) */
+  var cform = document.getElementById("cform");
+  if (cform){
+    var csend = document.getElementById("csend"), cstatus = document.getElementById("cstatus");
+    var FS = "https://formsubmit.co/ajax/6de988dcce557494668255018aad2484";
+    cform.addEventListener("submit", function(ev){
+      ev.preventDefault();
+      csend.disabled = true; csend.textContent = "Sending…";
+      cstatus.className = ""; cstatus.textContent = "";
+      var f = cform.elements;
+      var payload = {
+        name: f.name.value, email: f.email.value,
+        subject: f.subject.value, message: f.message.value,
+        _subject: "New message from your portfolio", _captcha: "false"
+      };
+      var ctl = new AbortController();
+      var tmo = setTimeout(function(){ ctl.abort(); }, 12000);
+      fetch(FS, {method:"POST", signal: ctl.signal,
+        headers:{"Content-Type":"application/json","Accept":"application/json"},
+        body: JSON.stringify(payload)})
+      .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(){
+        clearTimeout(tmo);
+        cform.reset();
+        cstatus.className = "ok";
+        cstatus.textContent = "Message sent. I read everything and reply fast.";
+        csend.disabled = false; csend.textContent = "Send message";
+      })
+      .catch(function(){
+        clearTimeout(tmo);
+        var m = "nikhilts19", h = "gmail.com";
+        var mail = "mailto:" + m + "@" + h +
+          "?subject=" + encodeURIComponent(f.subject.value || "Hello from your portfolio") +
+          "&body=" + encodeURIComponent((f.message.value || "") + "\n\n" +
+            (f.name.value || "") + " · " + (f.email.value || ""));
+        cstatus.className = "err";
+        cstatus.innerHTML = "The form service is down right now. ";
+        var a = document.createElement("a");
+        a.href = mail; a.textContent = "Tap here to email me directly instead";
+        cstatus.appendChild(a);
+        cstatus.appendChild(document.createTextNode(" and your message goes straight to my inbox."));
+        csend.disabled = false; csend.textContent = "Send message";
       });
     });
   }
